@@ -1,8 +1,9 @@
 const request = require('supertest');
 const app = require('../src/index');
-const db = require('../src/db');
+const { pool, init } = require('../src/db');
 
-afterAll(() => db.end());
+beforeAll(() => init);
+afterAll(() => pool.end());
 
 describe('GET /todos', () => {
   it('retorna array', async () => {

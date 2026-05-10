@@ -4,7 +4,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-pool.query(`
+const init = pool.query(`
   CREATE TABLE IF NOT EXISTS todos (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -13,4 +13,4 @@ pool.query(`
   )
 `);
 
-module.exports = pool;
+module.exports = { pool, init };
